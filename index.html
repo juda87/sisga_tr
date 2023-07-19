@@ -10,8 +10,8 @@
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
         <style>
         #map {
-            width: 100%;
-            height: 800px;
+            width: 1237px;
+            height: 991px;
         }
         </style>
         <title></title>
@@ -28,10 +28,11 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
+        <script src="data/Zonapotencialmenteinundable_6.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[5.07897511424237,-73.76666879527048],[5.13269033593416,-73.70477657882044]]);
+        }).fitBounds([[5.054916957421726,-73.81432118383732],[5.154357806601693,-73.69054400309341]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -91,9 +92,73 @@
                                               img_bounds_5Aos_5,
                                               {pane: 'pane_5Aos_5'});
         bounds_group.addLayer(layer_5Aos_5);
-        map.addLayer(layer_5Aos_5);
+        function pop_Zonapotencialmenteinundable_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['EXPEDIENTE'] !== null ? autolinker.link(feature.properties['EXPEDIENTE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TIPO_EVEN'] !== null ? autolinker.link(feature.properties['TIPO_EVEN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ENTIDAD'] !== null ? autolinker.link(feature.properties['ENTIDAD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GRAD_AME'] !== null ? autolinker.link(feature.properties['GRAD_AME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PESO_AME'] !== null ? autolinker.link(feature.properties['PESO_AME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREA_ha'] !== null ? autolinker.link(feature.properties['AREA_ha'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHAPE_Leng'] !== null ? autolinker.link(feature.properties['SHAPE_Leng'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHAPE_Area'] !== null ? autolinker.link(feature.properties['SHAPE_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Zonapotencialmenteinundable_6_0() {
+            return {
+                pane: 'pane_Zonapotencialmenteinundable_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.505)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(5,70,237,0.505)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Zonapotencialmenteinundable_6');
+        map.getPane('pane_Zonapotencialmenteinundable_6').style.zIndex = 406;
+        map.getPane('pane_Zonapotencialmenteinundable_6').style['mix-blend-mode'] = 'normal';
+        var layer_Zonapotencialmenteinundable_6 = new L.geoJson(json_Zonapotencialmenteinundable_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Zonapotencialmenteinundable_6',
+            layerName: 'layer_Zonapotencialmenteinundable_6',
+            pane: 'pane_Zonapotencialmenteinundable_6',
+            onEachFeature: pop_Zonapotencialmenteinundable_6,
+            style: style_Zonapotencialmenteinundable_6_0,
+        });
+        bounds_group.addLayer(layer_Zonapotencialmenteinundable_6);
+        map.addLayer(layer_Zonapotencialmenteinundable_6);
         var baseMaps = {};
-        L.control.layers(baseMaps,{"5 Años": layer_5Aos_5,"10 Años": layer_10Aos_4,"20 Años": layer_20Aos_3,"50 Años": layer_50Aos_2,"100 Años": layer_100Aos_1,"Google Hybrid": layer_GoogleHybrid_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/Zonapotencialmenteinundable_6.png" /> Zona potencialmente inundable': layer_Zonapotencialmenteinundable_6,"5 Años": layer_5Aos_5,"10 Años": layer_10Aos_4,"20 Años": layer_20Aos_3,"50 Años": layer_50Aos_2,"100 Años": layer_100Aos_1,"Google Hybrid": layer_GoogleHybrid_0,},{collapsed:false}).addTo(map);
         setBounds();
         L.ImageOverlay.include({
             getBounds: function () {
