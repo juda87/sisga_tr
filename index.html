@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1077px;
+            height: 991px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[5.02139865815192,-73.81102532420543],[5.135617247650964,-73.68723706718511]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_GoogleHybrid_0');
+        map.getPane('pane_GoogleHybrid_0').style.zIndex = 400;
+        var layer_GoogleHybrid_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleHybrid_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
+        });
+        layer_GoogleHybrid_0;
+        map.addLayer(layer_GoogleHybrid_0);
+        map.createPane('pane_100Aos_1');
+        map.getPane('pane_100Aos_1').style.zIndex = 401;
+        var img_100Aos_1 = 'data/100Aos_1.png';
+        var img_bounds_100Aos_1 = [[5.032286137704183,-73.80795236387675],[5.124727512313389,-73.69029061831607]];
+        var layer_100Aos_1 = new L.imageOverlay(img_100Aos_1,
+                                              img_bounds_100Aos_1,
+                                              {pane: 'pane_100Aos_1'});
+        bounds_group.addLayer(layer_100Aos_1);
+        map.createPane('pane_50Aos_2');
+        map.getPane('pane_50Aos_2').style.zIndex = 402;
+        var img_50Aos_2 = 'data/50Aos_2.png';
+        var img_bounds_50Aos_2 = [[5.032286137704183,-73.80795236387675],[5.124727512313389,-73.69029061831607]];
+        var layer_50Aos_2 = new L.imageOverlay(img_50Aos_2,
+                                              img_bounds_50Aos_2,
+                                              {pane: 'pane_50Aos_2'});
+        bounds_group.addLayer(layer_50Aos_2);
+        map.createPane('pane_20Aos_3');
+        map.getPane('pane_20Aos_3').style.zIndex = 403;
+        var img_20Aos_3 = 'data/20Aos_3.png';
+        var img_bounds_20Aos_3 = [[5.032286137704183,-73.80795236387675],[5.124727512313389,-73.69029061831607]];
+        var layer_20Aos_3 = new L.imageOverlay(img_20Aos_3,
+                                              img_bounds_20Aos_3,
+                                              {pane: 'pane_20Aos_3'});
+        bounds_group.addLayer(layer_20Aos_3);
+        map.createPane('pane_10Aos_4');
+        map.getPane('pane_10Aos_4').style.zIndex = 404;
+        var img_10Aos_4 = 'data/10Aos_4.png';
+        var img_bounds_10Aos_4 = [[5.032286137704183,-73.80795236387675],[5.124727512313389,-73.69029061831607]];
+        var layer_10Aos_4 = new L.imageOverlay(img_10Aos_4,
+                                              img_bounds_10Aos_4,
+                                              {pane: 'pane_10Aos_4'});
+        bounds_group.addLayer(layer_10Aos_4);
+        map.createPane('pane_5Aos_5');
+        map.getPane('pane_5Aos_5').style.zIndex = 405;
+        var img_5Aos_5 = 'data/5Aos_5.png';
+        var img_bounds_5Aos_5 = [[5.032286137704183,-73.80795236387675],[5.124727512313389,-73.69029061831607]];
+        var layer_5Aos_5 = new L.imageOverlay(img_5Aos_5,
+                                              img_bounds_5Aos_5,
+                                              {pane: 'pane_5Aos_5'});
+        bounds_group.addLayer(layer_5Aos_5);
+        map.addLayer(layer_5Aos_5);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{"5 Años": layer_5Aos_5,"10 Años": layer_10Aos_4,"20 Años": layer_20Aos_3,"50 Años": layer_50Aos_2,"100 Años": layer_100Aos_1,"Google Hybrid": layer_GoogleHybrid_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        </script>
+    </body>
+</html>
